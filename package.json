@@ -1,0 +1,24 @@
+{
+  "name": "project-apprestapi",
+  "version": "1.0.0",
+  "description": "latihan rest api menggunakan nodejs x mysql",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andsholinka/project-apprestapi.git"
+  },
+  "keywords": [
+    "restapi",
+    "nodejs",
+    "mysql"
+  ],
+  "author": "respecker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andsholinka/project-apprestapi/issues"
+  },
+  "homepage": "https://github.com/andsholinka/project-apprestapi#readme"
+}
