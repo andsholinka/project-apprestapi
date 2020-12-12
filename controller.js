@@ -11,7 +11,7 @@ exports.index = function (req, res) {
 exports.tampilSemuaMahasiswa = (req, res) => {
     connection.query('SELECT * FROM mahasiswa', function (error, rows, fields) {
         if (error) {
-            connection.log(error)
+            console.log(error)
         } else {
             response.ok(rows, res)
         }
@@ -24,7 +24,7 @@ exports.tampilBerdasarkanId = (req, res) => {
     connection.query('SELECT * FROM mahasiswa where id_mahasiswa = ?', [id],
         function (error, rows, field) {
             if (error) {
-                connection.log(error)
+                console.log(error)
             } else {
                 response.ok(rows, res)
             }
@@ -41,9 +41,28 @@ exports.tambahMahasiswa = (req, res) => {
         [nim, nama, jurusan],
         function (error, rows, fields) {
             if (error) {
-                connection.log(error)
+                console.log(error)
             } else {
                 response.ok("Berhasil Menambahkan Data!", res)
+            }
+        }
+    );
+};
+
+//!mengubah data berdasarkan id
+exports.updateMahasiswa = (req, res) => {
+    var id = req.body.id;
+    var nim = req.body.nim;
+    var nama = req.body.nama;
+    var jurusan = req.body.jurusan;
+
+    connection.query('UPDATE mahasiswa SET nim=?, nama=?, jurusan=? WHERE id_mahasiswa=?',
+        [nim, nama, jurusan, id],
+        function (error, rows, fields) {
+            if (error) {
+                console.log(error)
+            } else {
+                response.ok("Berhasil Mengubah Data!", res)
             }
         }
     );
