@@ -7,6 +7,10 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// panggil routes
+const routes = require('./routes');
+routes(app);
+
 app.listen(3000, () => {
     console.log('Example app listening on port 3000!');
 });
