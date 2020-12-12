@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({
 const routes = require('./routes');
 routes(app);
 
-app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+app.listen(8000, () => {
+    console.log('Example app listening on port 8000!');
 });
 
 //Run app, then load http://localhost:port in a browser to see the output.
