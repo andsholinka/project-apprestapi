@@ -1,43 +1,43 @@
-const connection = require('../koneksi');
-const mysql = require('mysql');
-const md5 = require('MD5');
-const response = require('../res');
-const jwt = require('jsonwebtoken');
-const config = require('../controller/secret');
-const ip = require('ip');
+var connection = require('../koneksi');
+var mysql = require('mysql');
+var md5 = require('MD5');
+var response = require('../res');
+var jwt = require('jsonwebtoken');
+var config = require('../config/secret');
+var ip = require('ip');
 
 //controller untuk register
-exports.registrasi = (req, res) => {
+exports.registrasi = function (req, res) {
     var post = {
-        username = req.body.username,
-        email = req.body.email,
-        password = md5(req.body.password),
-        role = req.body.role,
-        tanggal_daftar = new Date()
+        username: req.body.username,
+        email: req.body.email,
+        password: md5(req.body.password),
+        role: req.body.role,
+        tanggal_daftar: new Date()
     }
 
-    var query = "SELECT email FROM ?? WHERE ??";
+    var query = "SELECT email FROM ?? WHERE ??=?";
     var table = ["user", "email", post.email];
 
     query = mysql.format(query, table);
 
-    connection.query(query, function (err, rows) {
-        if (err) {
-            console.log(err);
+    connection.query(query, function (error, rows) {
+        if (error) {
+            console.log(error);
         } else {
             if (rows.length == 0) {
                 var query = "INSERT INTO ?? SET ?";
                 var table = ["user"];
-                query = mysql.format(query, table),
-                    connection.query(query, function (err, rows) {
-                        if (err) {
-                            console.log(err)
-                        } else {
-                            response.ok("Berhasil menambahkan data user baru", res)
-                        }
-                    });
+                query = mysql.format(query, table);
+                connection.query(query, post, function (error, rows) {
+                    if (error) {
+                        console.log(error);
+                    } else {
+                        response.ok("Berhasil menambahkan data user baru", res);
+                    }
+                });
             } else {
-                response.ok("Email sudah terdaftar!")
+                response.ok("Email sudah terdaftar!", res);
             }
         }
     })
