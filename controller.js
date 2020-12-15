@@ -7,7 +7,7 @@ exports.index = function (req, res) {
     response.ok("Application REST API is running", res)
 };
 
-//!menampilam semua data mahasiswa
+//menampilam semua data mahasiswa
 exports.tampilSemuaMahasiswa = (req, res) => {
     connection.query('SELECT * FROM mahasiswa', function (error, rows, fields) {
         if (error) {
@@ -18,7 +18,7 @@ exports.tampilSemuaMahasiswa = (req, res) => {
     });
 };
 
-//!menampilam semua data mahasiswa berdasarkan id
+//menampilam semua data mahasiswa berdasarkan id
 exports.tampilBerdasarkanId = (req, res) => {
     let id = req.params.id;
     connection.query('SELECT * FROM mahasiswa where id_mahasiswa = ?', [id],
@@ -31,7 +31,7 @@ exports.tampilBerdasarkanId = (req, res) => {
         });
 };
 
-//!menambah data mahasiswa
+//menambah data mahasiswa
 exports.tambahMahasiswa = (req, res) => {
     var nim = req.body.nim;
     var nama = req.body.nama;
@@ -49,7 +49,7 @@ exports.tambahMahasiswa = (req, res) => {
     );
 };
 
-//!mengubah data berdasarkan id
+//mengubah data berdasarkan id
 exports.updateMahasiswa = (req, res) => {
     var id = req.params.id;
     var nim = req.body.nim;
@@ -68,7 +68,7 @@ exports.updateMahasiswa = (req, res) => {
     );
 };
 
-//!menghapus data berdasarkan id
+//menghapus data berdasarkan id
 exports.hapusMahasiswa = function (req, res) {
     var id = req.params.id;
     connection.query('DELETE FROM mahasiswa WHERE id_mahasiswa=?', [id],
@@ -82,7 +82,7 @@ exports.hapusMahasiswa = function (req, res) {
     );
 }
 
-//!menampilkan matakuliah group
+//menampilkan matakuliah group
 exports.tampilGroupMatakuliah = function (req, res) {
     connection.query('SELECT mahasiswa.id_mahasiswa, mahasiswa.nim, mahasiswa.nama, mahasiswa.jurusan, matakuliah.matakuliah, matakuliah.sks from krs JOIN matakuliah JOIN mahasiswa WHERE krs.id_matakuliah = matakuliah.id_matakuliah AND krs.id_mahasiswa = mahasiswa.id_mahasiswa ORDER BY mahasiswa.id_mahasiswa',
         function (error, rows, fields) {
