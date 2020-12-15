@@ -26,7 +26,7 @@ exports.registrasi = function (req, res) {
         username: req.body.username,
         email: req.body.email,
         password: md5(req.body.password),
-        role: 1,
+        role: 2,
         tanggal_daftar: new Date(),
         isVerified: 0
     }
@@ -150,7 +150,7 @@ exports.login = function (req, res) {
                 }
 
                 var query = "INSERT INTO ?? SET ?";
-                var table = ["akses_token"];
+                var table = ["access_token"];
 
                 query = mysql.format(query, table);
                 connection.query(query, data, function (error, rows) {
